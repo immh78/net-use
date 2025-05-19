@@ -18,17 +18,17 @@ export default defineConfig({
       start_url: '/net-use/',
       icons: [
         {
-          src: 'ratio-192.png',
+          src: 'ratio-192-icon.png',
           sizes: '192x192',
           type: 'image/png'
         },
         {
-          src: 'ratio.png',
+          src: 'ratio-icon.png',
           sizes: '512x512',
           type: 'image/png'
         },
         {
-          src: 'ratio.png',
+          src: 'ratio-icon.png',
           sizes: '512x512',
           type: 'image/png',
           purpose: 'any maskable'
