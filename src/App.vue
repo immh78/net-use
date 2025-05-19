@@ -31,11 +31,11 @@ const todayAvailableData = computed(() => {
 <template>
   <div class="center-container">
     <div class="current-time">
-      {{ now.toLocaleString() }}
+      <v-chip color="primary">{{ new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false }) }}</v-chip>
     </div>
 
     <v-progress-circular :model-value="((totalData - availableData) / totalData) * 100" :rotate="360" :size="200"
-      :width="24" color="primary">
+      :width="20" color="primary">
       <span class="monthUse">{{ totalData - availableData.toFixed(1) }} GB</span></v-progress-circular><p></p>
 
     <v-progress-circular :model-value="((dailyData - todayAvailableData) / dailyData) * 100" :rotate="360" :size="120"
