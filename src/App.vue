@@ -29,10 +29,10 @@ const todayAvailableData = computed(() => {
 </script>
 
 <template>
-  <div>
+  <div class="center-container">
     <v-progress-circular :model-value="((totalData - availableData) / totalData) * 100" :rotate="360" :size="100"
       :width="15" color="primary">
-      {{ totalData - availableData.toFixed(1) }} GB</v-progress-circular>
+      {{ totalData - availableData.toFixed(1) }} GB</v-progress-circular><p></p>
 
     <v-progress-circular :model-value="((dailyData - todayAvailableData) / dailyData) * 100" :rotate="360" :size="80"
       :width="10" color="teal">
@@ -57,5 +57,13 @@ const todayAvailableData = computed(() => {
 .todayTotal {
   font-size: 12px;
   display: block;
+}
+
+.center-container {
+  display: flex;
+  flex-direction: column; /* 세로 정렬 */
+  justify-content: center; /* 수평 중앙 정렬 */
+  align-items: center; /* 수직 중앙 정렬 */
+  height: 100vh; /* 화면 전체 높이 */
 }
 </style>
