@@ -34,12 +34,12 @@ const todayAvailableData = computed(() => {
       {{ now.toLocaleString() }}
     </div>
 
-    <v-progress-circular :model-value="((totalData - availableData) / totalData) * 100" :rotate="360" :size="300"
-      :width="30" color="primary">
+    <v-progress-circular :model-value="((totalData - availableData) / totalData) * 100" :rotate="360" :size="200"
+      :width="24" color="primary">
       <span class="monthUse">{{ totalData - availableData.toFixed(1) }} GB</span></v-progress-circular><p></p>
 
-    <v-progress-circular :model-value="((dailyData - todayAvailableData) / dailyData) * 100" :rotate="360" :size="200"
-      :width="20" color="teal">
+    <v-progress-circular :model-value="((dailyData - todayAvailableData) / dailyData) * 100" :rotate="360" :size="120"
+      :width="14" color="teal">
       <div>
         <span class="todayUse">{{ (todayAvailableData * 1024).toFixed(0) }} MB</span>
         <span class="todayTotal">/ {{ (dailyData * 1024).toFixed(0) }} MB</span>
@@ -54,17 +54,17 @@ const todayAvailableData = computed(() => {
 }
 
 .monthUse {
-  font-size: 50px;
+  font-size: 40px;
   display: block;
 }
 
 .todayUse {
-  font-size: 30px;
+  font-size: 20px;
   display: block;
 }
 
 .todayTotal {
-  font-size: 20px;
+  font-size: 14px;
   display: block;
 }
 
