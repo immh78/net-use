@@ -30,12 +30,12 @@ const todayAvailableData = computed(() => {
 
 <template>
   <div class="center-container">
-    <v-progress-circular :model-value="((totalData - availableData) / totalData) * 100" :rotate="360" :size="100"
-      :width="15" color="primary">
-      {{ totalData - availableData.toFixed(1) }} GB</v-progress-circular><p></p>
+    <v-progress-circular :model-value="((totalData - availableData) / totalData) * 100" :rotate="360" :size="300"
+      :width="30" color="primary">
+      <span class="monthUse">{{ totalData - availableData.toFixed(1) }} GB</span></v-progress-circular><p></p>
 
-    <v-progress-circular :model-value="((dailyData - todayAvailableData) / dailyData) * 100" :rotate="360" :size="80"
-      :width="10" color="teal">
+    <v-progress-circular :model-value="((dailyData - todayAvailableData) / dailyData) * 100" :rotate="360" :size="200"
+      :width="20" color="teal">
       <div>
         <span class="todayUse">{{ (todayAvailableData * 1024).toFixed(0) }} MB</span>
         <span class="todayTotal">/ {{ (dailyData * 1024).toFixed(0) }} MB</span>
@@ -49,13 +49,18 @@ const todayAvailableData = computed(() => {
   margin: 1rem;
 }
 
+.monthUse {
+  font-size: 50px;
+  display: block;
+}
+
 .todayUse {
-  font-size: 14px;
+  font-size: 30px;
   display: block;
 }
 
 .todayTotal {
-  font-size: 12px;
+  font-size: 20px;
   display: block;
 }
 
