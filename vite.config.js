@@ -15,7 +15,7 @@ export default defineConfig({
       theme_color: '#42b883',
       background_color: '#ffffff',
       display: 'standalone',
-      start_url: '/',
+      start_url: '/net-use/',
       icons: [
         {
           src: 'monitoring.svg',
