@@ -26,6 +26,11 @@ const todayAvailableData = computed(() => {
   const todayElapsedHours = now.getHours() / 24; // 오늘 경과한 시간 비율
   return todayElapsedHours * dailyData;
 });
+
+function closePage() {
+  window.close(); // 브라우저 창 닫기
+};
+
 </script>
 
 <template>
@@ -45,6 +50,8 @@ const todayAvailableData = computed(() => {
         <span class="todayTotal">/ {{ (dailyData * 1024).toFixed(0) }} MB</span>
       </div>
     </v-progress-circular>
+
+    <v-btn color="secondary" class="close-button" @click="closePage()">닫기</v-btn>
   </div>
 </template>
 
@@ -75,4 +82,11 @@ const todayAvailableData = computed(() => {
   align-items: center; /* 수직 중앙 정렬 */
   height: 100vh; /* 화면 전체 높이 */
 }
+
+.close-button {
+  align-self: center; /* 버튼을 중앙 정렬 */
+  margin-top: auto; /* 위쪽 공간을 자동으로 채워 버튼을 아래로 밀기 */
+  padding: 0.5rem 1rem;
+}
+
 </style>
