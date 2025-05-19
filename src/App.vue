@@ -30,6 +30,10 @@ const todayAvailableData = computed(() => {
 
 <template>
   <div class="center-container">
+    <div class="current-time">
+      {{ now.toLocaleString() }}
+    </div>
+
     <v-progress-circular :model-value="((totalData - availableData) / totalData) * 100" :rotate="360" :size="300"
       :width="30" color="primary">
       <span class="monthUse">{{ totalData - availableData.toFixed(1) }} GB</span></v-progress-circular><p></p>
