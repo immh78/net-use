@@ -12,7 +12,7 @@ export default defineConfig({
       name: '모바일 데이터 사용 예정량',
       short_name: 'Mobile Data',
       description: '모바일 데이터 사용 예정량',
-      theme_color: '#42b883',
+      theme_color: '#ffffff',
       background_color: '#ffffff',
       display: 'standalone',
       start_url: '/net-use/',
