@@ -18,7 +18,7 @@ export default defineConfig({
       start_url: '/net-use/',
       icons: [
         {
-          src: 'ratio.png',
+          src: 'ratio-192.png',
           sizes: '192x192',
           type: 'image/png'
         },
