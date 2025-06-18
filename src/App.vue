@@ -55,7 +55,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="center-container bg-grey-lighten-4">
+  <div class="center-container bg-grey-lighten-1">
     <v-sheet :height="140" :width="140" border rounded class="pa-2 d-flex flex-column justify-space-between">
       <span class="monthUse">{{ monthLabel }} GB</span>
 
