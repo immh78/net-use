@@ -31,19 +31,19 @@ function getNow() {
   const elapsedHours = now.getHours() / 24; // 시간 비율
   const elapsedTime = elapsedDays + elapsedHours;
 
-// 현재까지 사용할 수 있는 데이터 계산
+  // 현재까지 사용할 수 있는 데이터 계산
   const availableData = (elapsedTime / daysInMonth) * totalData;
 
-// 오늘 현재 시간까지 사용할 수 있는 데이터 계산
-  const todayAvailableData =  (now.getHours() / 24) * dailyData; // 오늘 경과한 시간 비율
+  // 오늘 현재 시간까지 사용할 수 있는 데이터 계산
+  const todayAvailableData = (now.getHours() / 24) * dailyData; // 오늘 경과한 시간 비율
 
 
   monthCircular.value = ((totalData - availableData) / totalData) * 100;
-  monthLabel.value =  (totalData - availableData).toFixed(1);
+  monthLabel.value = (totalData - availableData).toFixed(1);
   todayCircular.value = ((dailyData - todayAvailableData) / dailyData) * 100;
   todayUseLabel.value = (todayAvailableData * 1024).toFixed(0);
   todayTotalLabel.value = (dailyData * 1024).toFixed(0);
- 
+
 };
 
 onMounted(() => {
@@ -56,21 +56,24 @@ onMounted(() => {
 
 <template>
   <div class="center-container">
-    <div class="current-time">
-      <v-chip color="primary" @click="getNow()">{{ timeNow }}</v-chip>
-    </div>
+    <v-sheet :height="140" :width="140" border rounded class="pa-2 d-flex flex-column justify-space-between">
+      <span class="monthUse">{{ monthLabel }} GB</span>
 
-    <v-progress-circular :model-value="monthCircular" :rotate="360" :size="200"
-      :width="20" color="primary">
-      <span class="monthUse">{{ monthLabel }} GB</span></v-progress-circular><p></p>
+      <v-progress-linear :model-value="monthCircular" height="14" color="primary" rounded />
 
-    <v-progress-circular :model-value="todayCircular" :rotate="360" :size="120"
-      :width="14" color="teal">
-      <div>
-        <span class="todayUse">{{ todayUseLabel }} MB</span>
-        <span class="todayTotal">/ {{ todayTotalLabel }} MB</span>
+      <div class="d-flex justify-end" style="font-size: 12px; color: darkgrey;">
+        <span @click="getNow()">{{ timeNow }} <v-icon>mdi-refresh</v-icon></span>
       </div>
-    </v-progress-circular>
+    </v-sheet>
+
+    
+    <v-sheet :height="140" :width="140" border rounded class="mt-6 pa-2 d-flex flex-column">
+      <span class="todayUse">{{ todayUseLabel }} MB</span>
+        <span class="todayTotal">/ {{ todayTotalLabel }} MB</span>
+
+      <v-progress-linear class="mt-5" :model-value="todayCircular" height="14" color="teal" rounded />
+
+    </v-sheet>
   </div>
 </template>
 
@@ -80,7 +83,7 @@ onMounted(() => {
 }
 
 .monthUse {
-  font-size: 40px;
+  font-size: 30px;
   display: block;
 }
 
@@ -96,9 +99,13 @@ onMounted(() => {
 
 .center-container {
   display: flex;
-  flex-direction: column; /* 세로 정렬 */
-  justify-content: center; /* 수평 중앙 정렬 */
-  align-items: center; /* 수직 중앙 정렬 */
-  height: 100vh; /* 화면 전체 높이 */
+  flex-direction: column;
+  /* 세로 정렬 */
+  justify-content: center;
+  /* 수평 중앙 정렬 */
+  align-items: center;
+  /* 수직 중앙 정렬 */
+  height: 100vh;
+  /* 화면 전체 높이 */
 }
 </style>
