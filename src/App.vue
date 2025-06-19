@@ -57,7 +57,7 @@ onMounted(() => {
 <template>
   <div class="center-container bg-grey-lighten-1">
     <v-sheet :height="140" :width="140" border rounded="xl" class="pa-2 d-flex flex-column justify-space-between">
-      <span class="monthUse">{{ monthLabel }} GB</span>
+      <span class="monthUse mt-2">{{ monthLabel }} GB</span>
 
       <v-progress-linear :model-value="monthCircular" height="14" color="primary" rounded />
 
@@ -68,10 +68,10 @@ onMounted(() => {
 
     
     <v-sheet :height="140" :width="140" border rounded="xl" class="mt-6 pa-2 d-flex flex-column">
-      <span class="todayUse">{{ todayUseLabel }} MB</span>
+      <span class="todayUse mt-2">{{ todayUseLabel }} MB</span>
         <span class="todayTotal">/ {{ todayTotalLabel }} MB</span>
 
-      <v-progress-linear class="mt-5" :model-value="todayCircular" height="14" color="teal" rounded />
+      <v-progress-linear class="mt-3" :model-value="todayCircular" height="14" color="teal" rounded />
 
     </v-sheet>
   </div>
