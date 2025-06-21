@@ -9,6 +9,7 @@ const todayUseLabel = ref("");
 const todayTotalLabel = ref("");
 
 const timeNow = ref("");
+const isLoading = ref(false);
 
 // 한 달 총 데이터 용량 (GB)
 const totalData = 11;
@@ -17,6 +18,7 @@ const totalData = 11;
 
 
 function getNow() {
+  isLoading.value = true;
   const now = new Date();
   timeNow.value = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
 
@@ -44,6 +46,10 @@ function getNow() {
   todayUseLabel.value = (todayAvailableData * 1024).toFixed(0);
   todayTotalLabel.value = (dailyData * 1024).toFixed(0);
 
+  setTimeout(() => {
+    isLoading.value = false;
+  }, 1000);
+
 };
 
 onMounted(() => {
@@ -62,14 +68,23 @@ onMounted(() => {
       <v-progress-linear :model-value="monthCircular" height="14" color="primary" rounded />
 
       <div class="d-flex justify-end" style="font-size: 12px; color: darkgrey;">
-        <span @click="getNow()">{{ timeNow }} <v-icon>mdi-refresh</v-icon></span>
+        <span @click="getNow()">{{ timeNow }}
+          <span class="icon-wrapper ms-1">
+            <template v-if="isLoading">
+              <v-progress-circular indeterminate size="11" width="1" class="loading-spinner" />
+            </template>
+            <template v-else>
+              <v-icon size="16">mdi-refresh</v-icon>
+            </template>
+          </span>
+        </span>
       </div>
     </v-sheet>
 
-    
+
     <v-sheet :height="140" :width="140" border rounded="xl" class="mt-6 pa-2 d-flex flex-column">
       <span class="todayUse mt-2">{{ todayUseLabel }} MB</span>
-        <span class="todayTotal">/ {{ todayTotalLabel }} MB</span>
+      <span class="todayTotal">/ {{ todayTotalLabel }} MB</span>
 
       <v-progress-linear class="mt-3" :model-value="todayCircular" height="14" color="teal" rounded />
 
@@ -78,8 +93,20 @@ onMounted(() => {
 </template>
 
 <style scoped>
-.v-progress-circular {
-  margin: 1rem;
+.icon-wrapper {
+  width: 16px;
+  height: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 작은 스피너에는 마진 제거 */
+.loading-spinner {
+  margin: 0;
+  /* 세로 밀림 방지 */
+  vertical-align: top;
+  /* 아이콘과 높이 맞춤 */
 }
 
 .monthUse {
