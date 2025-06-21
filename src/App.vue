@@ -61,28 +61,25 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="center-container bg-grey-lighten-1">
-    <v-sheet :height="140" :width="140" border rounded="xl" class="pa-2 d-flex flex-column justify-space-between">
+  <div class="center-container bg-grey-darken-1">
+    <v-sheet :height="140" :width="140" rounded="xl" class="pa-2 d-flex flex-column justify-space-between">
       <span class="monthUse mt-2">{{ monthLabel }} GB</span>
 
       <v-progress-linear :model-value="monthCircular" height="14" color="primary" rounded />
 
       <div class="d-flex justify-end" style="font-size: 12px; color: darkgrey;">
-        <span @click="getNow()">{{ timeNow }}
-          <span class="icon-wrapper ms-1">
-            <template v-if="isLoading">
-              <v-progress-circular indeterminate size="11" width="1" class="loading-spinner" />
-            </template>
-            <template v-else>
-              <v-icon size="16">mdi-refresh</v-icon>
-            </template>
-          </span>
-        </span>
+        <template v-if="isLoading">
+          <v-progress-circular class="mr-4 mb-2" indeterminate size="14" width="1" />
+        </template>
+        <template v-else>
+          <span class="mr-2 mb-1" @click="getNow()">{{ timeNow }}</span>
+        </template>
+
       </div>
     </v-sheet>
 
 
-    <v-sheet :height="140" :width="140" border rounded="xl" class="mt-6 pa-2 d-flex flex-column">
+    <v-sheet :height="140" :width="140" rounded="xl" class="mt-6 pa-2 d-flex flex-column">
       <span class="todayUse mt-2">{{ todayUseLabel }} MB</span>
       <span class="todayTotal">/ {{ todayTotalLabel }} MB</span>
 
@@ -94,19 +91,8 @@ onMounted(() => {
 
 <style scoped>
 .icon-wrapper {
-  width: 16px;
-  height: 16px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
 
-/* 작은 스피너에는 마진 제거 */
-.loading-spinner {
-  margin: 0;
-  /* 세로 밀림 방지 */
-  vertical-align: top;
-  /* 아이콘과 높이 맞춤 */
+  display: inline-flex;
 }
 
 .monthUse {
