@@ -12,7 +12,7 @@ const timeNow = ref("");
 const isLoading = ref(false);
 
 // 한 달 총 데이터 용량 (GB)
-const totalData = 11;
+const totalData = 15;
 
 
 
